@@ -7,7 +7,7 @@ import { LOGO_URL } from '../../constants/config';
   standalone: true,
   imports: [CommonModule],
   templateUrl: './header.component.html',
-  styleUrl: './header.component.scss'
+  styleUrl: './header.component.css'
 })
 export class HeaderComponent {
   logoUrl = LOGO_URL;

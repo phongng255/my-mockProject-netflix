@@ -1,14 +1,51 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, inject } from '@angular/core';
 import { HeaderComponent } from '../../componenets/header/header.component';
+import { MovieCategoryComponent } from '../../componenets/movie-category/movie-category.component';
+import { MovieService } from '../../service/movie.service';
+import { Movie } from '../../types/movies';
+import { tmdbConfig } from '../../constants/config';
+import { DomSanitizer } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-browser',
   standalone: true,
   templateUrl: './browse.component.html',
   styleUrls: ['./browse.component.css'],
-  imports: [HeaderComponent],
+  imports: [HeaderComponent, MovieCategoryComponent],
 })
-export class BrowserComponent implements OnInit {
-  constructor() {}
-  ngOnInit() {}
+export class BrowserComponent {
+  movieService = inject(MovieService);
+  popularMovies: Movie[] = [];
+  topRatedMovies: Movie[] = [];
+  upcommingMovies: Movie[] = [];
+  nowPlayingMovies: Movie[] = [];
+  bannerMovie!: Movie;
+  tmdbConfig = tmdbConfig;
+  public domSanitise=inject(DomSanitizer);
+
+  ngOnInit() {
+    this.movieService.getPopularMovies().subscribe((result: any) => {
+      console.log(result);
+      this.popularMovies = result.results;
+      this.bannerMovie = this.popularMovies[1];
+      console.log(this.bannerMovie.id);
+      this.movieService
+        .getMovieVideos(this.bannerMovie.id)
+        .subscribe((res: any) => {
+          this.bannerMovie.videoKey = res.results.find(
+            (x: any) => (x.site = 'YouTube')
+          ).key;
+          console.log(this.bannerMovie)
+        });
+    });
+    this.movieService.getTopRatedMovies().subscribe((result: any) => {
+      this.topRatedMovies = result.results;
+    });
+    this.movieService.getNowPlayingMovies().subscribe((result: any) => {
+      this.nowPlayingMovies = result.results;
+    });
+    this.movieService.getUpcomingMovies().subscribe((result: any) => {
+      this.upcommingMovies = result.results;
+    });
+  }
 }

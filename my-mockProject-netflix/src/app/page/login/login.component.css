@@ -1,16 +1,16 @@
 .login-container {
   display: flex;
   justify-content: center;
-  margin-top: 32px;
+  margin-top: 100px;
 }
 
-.login-container .login-card {
+.login-card {
   background-color: black;
   width: 450px;
-  padding: 48px 48px;
+  padding: 60px 48px;
 }
 
-.login-container .login-card .heading {
+.login-card .heading {
   font-size: 24px;
   font-weight: bold;
   color: white;
@@ -35,10 +35,10 @@
 }
 
 .action-field .login-btn {
-    background-color: red;
-    padding: 10px 12px;
-    width: 100%;
-    border-radius: 2px;
-    color: white;
-    font-weight: bold;
-  }
+  background-color: red;
+  padding: 10px 12px;
+  width: 100%;
+  border-radius: 2px;
+  color: white;
+  font-weight: bold;
+}
