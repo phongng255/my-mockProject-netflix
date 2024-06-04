@@ -25,17 +25,14 @@ export class BrowserComponent {
 
   ngOnInit() {
     this.movieService.getPopularMovies().subscribe((result: any) => {
-      console.log(result);
       this.popularMovies = result.results;
       this.bannerMovie = this.popularMovies[1];
-      console.log(this.bannerMovie.id);
-      this.movieService
+       this.movieService
         .getMovieVideos(this.bannerMovie.id)
         .subscribe((res: any) => {
           this.bannerMovie.videoKey = res.results.find(
             (x: any) => (x.site = 'YouTube')
           ).key;
-          console.log(this.bannerMovie)
         });
     });
     this.movieService.getTopRatedMovies().subscribe((result: any) => {
