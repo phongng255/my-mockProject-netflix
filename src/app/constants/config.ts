@@ -1,0 +1,4 @@
+export const tmdbConfig = {
+  accessToken:
+    'eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJlODMwMzQzNzM5ZDU4ZmM1YWE5MDBlMTZiZjE2OTE2NSIsInN1YiI6IjY2NTk4MjhlMWQwNGYzYjQ0ZDJkNTJhMCIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.TbcXP2OL6dATipg9omgr_oD-mRxFlw0FeX92qh7kA3E',
+};
