@@ -1,12 +1,6 @@
 import { Routes } from '@angular/router';
-import { LoginComponent } from './page/login/login.component';
 
 export const routes: Routes = [
-  {
-    path: 'login',
-    loadComponent: () =>
-      import('./page/login/login.component').then((a) => a.LoginComponent),
-  },
   {
     path: 'browse',
     loadComponent: () =>
@@ -14,6 +8,6 @@ export const routes: Routes = [
   },
   {
     path: '**',
-    component: LoginComponent,
+    redirectTo: 'browse',
   },
 ];

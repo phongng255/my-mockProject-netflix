@@ -2,7 +2,6 @@ import { Component, inject } from '@angular/core';
 import { Observable, forkJoin, map } from 'rxjs';
 import { HeaderComponent } from '../../componenets/header/header.component';
 import { BannerComponent } from '../../componenets/banner/banner.component';
-import { AuthService } from '../../service/auth.service';
 import { MovieService } from '../../service/movie.service';
 import { IVideoContent } from '../../models/video-content.interface';
 import { CommonModule } from '@angular/common';
@@ -17,11 +16,9 @@ import { MovieCarouselComponent } from './components/movie-carousel/movie-carous
 })
 export class BrowserComponent {
   
-  constructor(private auth: AuthService, private movieService: MovieService) {}
+  constructor(private movieService: MovieService) {}
   
-  name = JSON.parse(sessionStorage.getItem('loggedInUser')!).name;
-  userProfileImg = JSON.parse(sessionStorage.getItem('loggedInUser')!).picture;
-  email = JSON.parse(sessionStorage.getItem('loggedInUser')!).email;
+  userProfileImg = '/assets/avatar.svg';
   bannerDetail$: Observable<any> | undefined;
   bannerVideo$: Observable<any> | undefined;
 
@@ -90,10 +87,5 @@ export class BrowserComponent {
 
   getMovieKey() {
     this.movieService.getBannerVideo(this.movies[0].id).subscribe((res) => {});
-  }
-
-  singOut() {
-    sessionStorage.removeItem('loggedInUser');
-    this.auth.signOut();
   }
 }

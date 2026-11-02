@@ -1,7 +1,5 @@
 import { Component, Input, inject } from '@angular/core';
 
-import { AuthService } from '../../service/auth.service';
-
 @Component({
   selector: 'app-header',
   standalone: true,
@@ -10,11 +8,9 @@ import { AuthService } from '../../service/auth.service';
   styleUrl: './header.component.css',
 })
 export class HeaderComponent {
-  constructor(protected auth: AuthService) {}
-
   @Input({ required: true }) userImg: string = '';
 
-  username = JSON.parse(sessionStorage.getItem('loggedInUser')!).name;
+  username = 'Guest';
 
   navList = [
     'Home',
